@@ -1,4 +1,4 @@
-package dev.municipio.Socrates
+package dev.municipio.socrates
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

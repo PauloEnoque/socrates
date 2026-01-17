@@ -1,4 +1,4 @@
-package dev.municipio.Socrates
+package dev.municipio.socrates
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
