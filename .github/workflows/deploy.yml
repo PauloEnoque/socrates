@@ -1,0 +1,35 @@
+name: Deploy Docker Compose to VPS
+
+on:
+  push:
+    branches: [ infrastructure ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          script: |
+            set -e
+            cd /opt/docker-components
+            git fetch origin main
+            git reset --hard origin/infrastructure
+
+            # Ensure plugin is available (safe if already installed)
+            sudo apt-get update -y
+            sudo apt-get install -y docker-compose-plugin
+
+            cd socrates/infra
+            docker compose pull || true
+            docker compose up -d
+            docker system prune -f
