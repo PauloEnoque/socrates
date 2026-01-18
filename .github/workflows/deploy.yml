@@ -2,7 +2,7 @@ name: Deploy Docker Compose to VPS
 
 on:
   push:
-    branches: [ infrastructure ]
+    branches: [ develop ]
 
 jobs:
   deploy:
@@ -36,9 +36,9 @@ jobs:
             fi
 
             cd "$APP_DIR"
-            git checkout infrastructure
+            git checkout develop
             git fetch origin
-            git reset --hard origin/infrastructure
+            git reset --hard origin/develop
 
             cd infra
             docker compose pull || true
