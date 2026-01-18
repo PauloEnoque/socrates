@@ -1,0 +1,5 @@
+spring:
+  profiles: sit
+  port: 8081
+  datasource:
+    url: jdbc:postgresql://localhost:5432/socrates

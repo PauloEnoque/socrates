@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: Socrates
+    port: 8081
+  datasource:
+    url: jdbc:postgresql://87.106.25.18:5432/socrates
+    username: app_user
+    password: $0CR47ES
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: true
