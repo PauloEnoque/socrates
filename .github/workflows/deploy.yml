@@ -26,8 +26,8 @@ jobs:
 
             if [ ! -d "$APP_DIR/.git" ]; then
               echo "Cloning socrates repo..."
-              sudo mkdir -p /opt/docker-components
-              sudo chown psafrao:psafrao /opt/docker-components
+              mkdir -p /opt/docker-components
+              chown psafrao:psafrao /opt/docker-components
               cd /opt/docker-components
               git clone "$REPO" .
             fi
