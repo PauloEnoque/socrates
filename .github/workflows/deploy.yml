@@ -32,8 +32,7 @@ jobs:
               echo "changing dir"
               cd /opt/docker-components
               echo "cloning repo"
-              git clone "$REPO" .
-             ls -lart
+              git clone "$REPO"
             fi
 
             cd "$APP_DIR"
