@@ -1,0 +1,23 @@
+version: "3.9"  # OK, ignored by v2
+
+services:
+  postgres:
+    image: postgres:18
+    container_name: postgres-main
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: app_user
+      POSTGRES_PASSWORD: $0CR47ES
+      POSTGRES_DB: socrates
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql  # FIXED: parent dir
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U app_user -d socrates" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:

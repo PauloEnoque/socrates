@@ -1,0 +1,46 @@
+name: Deploy Docker Compose to VPS
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          script: |
+            set -e
+            APP_DIR="/opt/docker-components/socrates"
+            REPO="git@github.com:PauloEnoque/socrates.git"  
+
+            if [ ! -d "$APP_DIR/.git" ]; then
+              echo "making base dir"
+              mkdir -p /opt/docker-components
+              echo "changing ownership"
+              chown psafrao:psafrao /opt/docker-components
+              echo "changing dir"
+              cd /opt/docker-components
+              echo "cloning repo"
+              git clone "$REPO"
+            fi
+
+            cd "$APP_DIR"
+            git checkout develop
+            git fetch origin
+            git reset --hard origin/develop
+
+            cd infra
+            docker compose pull || true
+            docker compose up -d
+            docker system prune -f
