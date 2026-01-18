@@ -25,11 +25,15 @@ jobs:
             REPO="git@github.com:PauloEnoque/socrates.git"  
 
             if [ ! -d "$APP_DIR/.git" ]; then
-              echo "Cloning socrates repo..."
+              echo "making base dir"
               mkdir -p /opt/docker-components
+              echo "changing ownership"
               chown psafrao:psafrao /opt/docker-components
+              echo "changing dir"
               cd /opt/docker-components
+              echo "cloning repo"
               git clone "$REPO" .
+             ls -lart
             fi
 
             cd "$APP_DIR"
