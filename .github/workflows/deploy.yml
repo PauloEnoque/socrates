@@ -40,6 +40,9 @@ jobs:
             git fetch origin
             git reset --hard origin/develop
 
+            # build jar (Gradle example; change for Maven)
+            ./gradlew clean bootJar
+            
             cd infra
             docker compose pull || true
             docker compose up -d
