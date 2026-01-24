@@ -23,7 +23,7 @@ services:
     build:
       context: ..
       dockerfile: infra/Dockerfile-sit
-    container_name: socrates-app
+    container_name: socrates-sit
     restart: unless-stopped
     depends_on:
       - postgres
