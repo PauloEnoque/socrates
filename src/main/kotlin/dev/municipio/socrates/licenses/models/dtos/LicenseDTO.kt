@@ -12,9 +12,9 @@ data class LicenseDTO(
     val description: String?,
 
     @field:NotNull("Duration is a required field, please check!")
-    val durationMoth: Int?,
+    var durationMoth: Int?,
 
     @field:NotNull("Price is a required field, please check!")
     @field:PositiveOrZero("Price must be positive or zero")
-    val price: Double?,
+    var price: Double?,
 )
