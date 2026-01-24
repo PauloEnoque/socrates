@@ -1,7 +1,9 @@
+server:
+  port: 8080
+
 spring:
   application:
     name: Socrates
-    port: 8081
   datasource:
     url: jdbc:postgresql://87.106.25.18:5432/socrates
     username: app_user
