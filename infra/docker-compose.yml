@@ -27,8 +27,6 @@ services:
     restart: unless-stopped
     depends_on:
       - postgres
-    environment:
-      SPRING_PROFILES_ACTIVE: sit
     ports:
       - "8081:8081"
 
