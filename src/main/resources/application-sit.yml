@@ -2,8 +2,8 @@ server:
   port: 8081
 
 spring:
-  config:
-    activate:
-      on-profile: sit
+  #  config:
+  #    activate:
+  #      on-profile: sit
   datasource:
     url: jdbc:postgresql://localhost:5432/socrates
