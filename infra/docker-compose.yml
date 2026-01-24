@@ -19,5 +19,16 @@ services:
       timeout: 5s
       retries: 5
 
+  app:
+    build:
+      context: ..
+      dockerfile: infra/Dockerfile-sit
+    container_name: socrates-app
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    ports:
+      - "8081:8081"
+
 volumes:
   postgres_data:
