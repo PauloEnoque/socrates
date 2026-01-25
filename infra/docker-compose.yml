@@ -28,7 +28,7 @@ services:
     depends_on:
       - postgres
     environment:
-      SPRING_PROFILE_ACTIVE: sit
+      - SPRING_PROFILES_ACTIVE=sit= sit
     ports:
       - "8081:8081"
 
