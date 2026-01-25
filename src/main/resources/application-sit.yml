@@ -1,6 +1,2 @@
 server:
   port: 8081
-spring:
-  config:
-    activate:
-      on-profile: sit
