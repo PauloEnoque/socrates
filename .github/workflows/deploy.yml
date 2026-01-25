@@ -24,14 +24,15 @@ jobs:
             APP_DIR="/opt/docker-components/socrates"
             REPO="git@github.com:PauloEnoque/socrates.git"  
 
-            # Setup repo if missing
             if [ ! -d "$APP_DIR/.git" ]; then
-              echo "Cloning repo..."
+              echo "making base dir"
               mkdir -p /opt/docker-components
+              echo "changing ownership"
               chown psafrao:psafrao /opt/docker-components
+              echo "changing dir"
               cd /opt/docker-components
-              git clone "$REPO" socrates
-              cd socrates
+              echo "cloning repo"
+              git clone "$REPO"
             fi
 
             cd "$APP_DIR"
@@ -39,10 +40,10 @@ jobs:
             git fetch origin
             git reset --hard origin/develop
 
-            # Build fresh JAR (skip tests if DB-dependent)
+            # build jar (Gradle example; change for Maven)
             chmod +x ./gradlew
-            ./gradlew build -x test  # Skip tests to avoid DB issues
-
+            ./gradlew build
+            
             cd infra
             # Stop existing services, force rebuild, start
             docker compose down
