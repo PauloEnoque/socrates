@@ -9,4 +9,5 @@ interface LicenseService {
     fun getAllLicenses(): List<License>
     fun getLicenseById(id: Long): License
     fun deleteLicenseById(id: Long)
+    fun updateLicense(id: Long, license: LicenseDTO): License
 }
