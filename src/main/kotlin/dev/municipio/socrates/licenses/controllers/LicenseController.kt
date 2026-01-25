@@ -41,4 +41,11 @@ class LicenseController(var licenseService: LicenseService) {
         licenseService.deleteLicenseById(id)
         return ResponseEntity.noContent().build()
     }
+
+    @PutMapping("/{id}")
+    fun updateLicense(@PathVariable id: Long, @Valid @RequestBody license: LicenseDTO): ResponseEntity<License> {
+        val updatedLicense = licenseService.updateLicense(id, license)
+        return ResponseEntity.ok(updatedLicense)
+    }
+
 }
