@@ -4,6 +4,3 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/socrates
-  config:
-    activate:
-      on-profile: sit
