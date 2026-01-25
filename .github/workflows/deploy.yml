@@ -47,7 +47,7 @@ jobs:
             cd infra
             # Stop existing services, force rebuild, start
             docker compose down
-            docker compose build --no-cache socrates-sit
+            docker compose build --no-cache
             docker compose up -d --wait  # Waits for healthy startup
             docker system prune -f
 
