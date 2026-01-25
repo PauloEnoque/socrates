@@ -29,6 +29,7 @@ services:
       - postgres
     environment:
       SPRING_PROFILES_ACTIVE: sit
+      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_BOOT_CONTEXT_CONFIG: TRACE
     ports:
       - "8081:8081"
 
